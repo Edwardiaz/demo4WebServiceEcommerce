@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"net.catalogo.config"}) // Scans the following packages for classes with @Controller annotations
+@ComponentScan(basePackages = {"com.ws"}) // Scans the following packages for classes with @Controller annotations
 public class DispatcherConfig implements WebMvcConfigurer {
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

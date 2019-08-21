@@ -1,4 +1,4 @@
-package com.ws.entity;
+package com.rest.entity;
 
 import java.io.Serializable;
 //import java.util.Date;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 //import javax.persistence.Temporal;
 //import javax.persistence.TemporalType;
 
-import com.ws.entity.Products;
+import com.rest.entity.Products;
 
 @Entity
 @Table(name = "products")
