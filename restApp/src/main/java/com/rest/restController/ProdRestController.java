@@ -25,67 +25,58 @@ public class ProdRestController {
 	    public String welcome() {
 	        return "Bienvenido.";
 	    }
-	 
-	    // URL:
-	    // http://localhost:8080/SpringMVCRESTful/employees
-	    // http://localhost:8080/SpringMVCRESTful/employees.xml
-	    // http://localhost:8080/SpringMVCRESTful/employees.json
-	    @RequestMapping(value = "/find", //
+	    
+	    // http://localhost:8090/restApp/producto
+	    // http://localhost:8090/restApp/producto.json
+	    @RequestMapping(value = "/producto", //
 	            method = RequestMethod.GET, //
-	            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
 	    public List<Products> getProducts() {
 	        List<Products> list = proDao.consultarProductos();
 	        return list;
 	    }
 	 
-	    // URL:
-	    // http://localhost:8080/SpringMVCRESTful/employee/{empNo}
-	    // http://localhost:8080/SpringMVCRESTful/employee/{empNo}.xml
-	    // http://localhost:8080/SpringMVCRESTful/employee/{empNo}.json
-	    @RequestMapping(value = "/pro/{id}", //
+	    
+	    // http://localhost:8090/restApp/producto/{id}
+	    // http://localhost:8090/restApp/producto/{id}.json
+	    @RequestMapping(value = "/producto/{id}", //
 	            method = RequestMethod.GET, //
-	            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
-	    public Products getEmployee(@PathVariable("id") int id) {
+	    public Products getProduct(@PathVariable("id") Long id) {
 	        return proDao.findByIdProducto(id);
 	    }
 	 
-	    // URL:
-	    // http://localhost:8080/SpringMVCRESTful/employee
-	    // http://localhost:8080/SpringMVCRESTful/employee.xml
-	    // http://localhost:8080/SpringMVCRESTful/employee.json
-	    @RequestMapping(value = "/save", //
+	    // http://localhost:8090/restApp/producto
+	    // http://localhost:8090/restApp/producto.json
+	    @RequestMapping(value = "/producto", //
 	            method = RequestMethod.POST, //
-	            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
-	    public Products addEmployee(@RequestBody Products emp) {
+	    public Products addProduct(@RequestBody Products emp) {
 	 
 	        return proDao.insertarProducto(emp);
 	 
 	    }
 	 
-	    // URL:
-	    // http://localhost:8080/SpringMVCRESTful/employee
-	    // http://localhost:8080/SpringMVCRESTful/employee.xml
-	    // http://localhost:8080/SpringMVCRESTful/employee.json
+	    // http://localhost:8090/restApp/producto
+	    // http://localhost:8090/restApp/producto.json
 	    @RequestMapping(value = "/update", //
 	            method = RequestMethod.PUT, //
-	            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
-	    public Products updateEmployee(@RequestBody Products id) {
+	    public Products updateProduct(@RequestBody Products id) {
 	 
 	        return proDao.updateProducto(id);
 	    }
 	 
-	    // URL:
-	    // http://localhost:8080/SpringMVCRESTful/employee/{empNo}
+	    // http://localhost:8090/restApp/producto/{empNo}
 	    @RequestMapping(value = "/pro/{id}", //
 	            method = RequestMethod.DELETE, //
-	            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
-	    public void deleteEmployee(@PathVariable("empNo") int id) {
+	    public void deleteProduct(@PathVariable("id") long id) {
 	        proDao.eliminarProducto(id);
 	    }
-	 
 	}

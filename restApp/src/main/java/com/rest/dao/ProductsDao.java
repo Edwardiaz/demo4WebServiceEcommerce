@@ -37,17 +37,27 @@ JdbcTemplate template;
 	/*metodo consultarAll*/
 	public List<Products> consultarProductos(){
 		try(Session sesion = HibernateUtil.getSessionFactory().openSession()){
-			return sesion.createQuery("from Productos", Products.class).list();	
+			return sesion.createQuery("from Products", Products.class).list();	
 		}
 	}
 	/*Teminar metodo consultarAll*/
 	
+	/*metodo consultarById*/
+	public Products findByIdProducto(long id){
+		try(Session sesion = HibernateUtil.getSessionFactory().openSession()){
+//			Products pro = (Products)sesion.createQuery("from Products", Products.class).list();
+			Products pro = (Products) sesion.get(Products.class, new Long(id));
+			return pro;
+		}
+	}
+	/*Teminar metodo consultarById*/
+	
 	/*Metodo Eliminar*/
-	public void eliminarProducto(int id) {
+	public void eliminarProducto(long id) {
 		Transaction transaccion = null;
 //		Session sesion = this.sessionFactory.getCurrentSession();
 		Session sesion = HibernateUtil.getSessionFactory().openSession();
-		Products pro = (Products) sesion.load(Products.class, new Integer(id));
+		Products pro = (Products) sesion.load(Products.class, new Long(id));
 		transaccion = sesion.beginTransaction();
 		if (null != pro) {
 			sesion.delete(pro);
@@ -71,20 +81,13 @@ JdbcTemplate template;
 	}
 	/*Terminar metodo Actulizar*/
 	
-	public Products findByIdProducto(int id) {
-		Transaction transaccion = null;
-//		Session sesion = this.sessionFactory.getCurrentSession();
-		Session sesion = HibernateUtil.getSessionFactory().openSession();
-		Products pro = (Products) sesion.load(Products.class, new Integer(id));
-		transaccion = sesion.beginTransaction();
-		if (null != pro) {
-			sesion.find(Products.class, "idProducts");
-			transaccion.commit();
-			return pro;
-		}else {
-			System.out.println("ERROR BUSCANDO POR ID::::->"+pro);
-			return null;
-		}
-		
-	}
+//	public Products findByIdProducto(Long id) {
+//		Transaction transaccion = null;
+////		Session sesion = this.sessionFactory.getCurrentSession();
+//		Session sesion = HibernateUtil.getSessionFactory().openSession();
+//		Products pro = (Products) sesion.load(Products.class, id);
+//		transaccion = sesion.beginTransaction();
+//		return pro;
+//		
+//	}
 }

@@ -118,6 +118,20 @@
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <!-- Config: contextPath and Port (Default: /resApp : 8090) -->
+               
+                <configuration>
+                    <path>/restApp</path>
+                    <port>8090</port>
+                </configuration>
+               
+            </plugin>
+			
 		</plugins>
 	</build>
 </project>
