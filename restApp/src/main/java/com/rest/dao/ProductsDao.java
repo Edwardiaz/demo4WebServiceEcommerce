@@ -45,7 +45,6 @@ JdbcTemplate template;
 	/*metodo consultarById*/
 	public Products findByIdProducto(long id){
 		try(Session sesion = HibernateUtil.getSessionFactory().openSession()){
-//			Products pro = (Products)sesion.createQuery("from Products", Products.class).list();
 			Products pro = (Products) sesion.get(Products.class, new Long(id));
 			return pro;
 		}
@@ -67,27 +66,27 @@ JdbcTemplate template;
 	/*Termina metodo eliminar*/
 	
 	/*Metodo actualizar*/
-	public Products updateProducto(Products id) {
-		Transaction transaccion = null;
-//		Session sesion = this.sessionFactory.getCurrentSession();
-		Session sesion = HibernateUtil.getSessionFactory().openSession();
-		Products pro = (Products) sesion.load(Products.class, id);
-		transaccion = sesion.beginTransaction();
-		if (null != pro) {
-			sesion.update(pro);
-			transaccion.commit();
-		}
-		return pro;
-	}
-	/*Terminar metodo Actulizar*/
-	
-//	public Products findByIdProducto(Long id) {
+	public Products updateProducto(Products pro) {
 //		Transaction transaccion = null;
 ////		Session sesion = this.sessionFactory.getCurrentSession();
 //		Session sesion = HibernateUtil.getSessionFactory().openSession();
 //		Products pro = (Products) sesion.load(Products.class, id);
 //		transaccion = sesion.beginTransaction();
+//		if (null != pro) {
+//			sesion.update(pro);
+//			transaccion.commit();
+//		}
 //		return pro;
-//		
-//	}
+		
+		Transaction transaccion = null;
+		try(Session sesion = HibernateUtil.getSessionFactory().openSession()) {
+			transaccion = sesion.beginTransaction();
+			sesion.update(pro);
+			transaccion.commit();
+			return pro;
+		}
+		
+	}
+	/*Terminar metodo Actulizar*/
+
 }

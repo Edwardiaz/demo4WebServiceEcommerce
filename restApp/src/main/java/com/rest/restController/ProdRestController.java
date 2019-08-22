@@ -54,15 +54,15 @@ public class ProdRestController {
 	            method = RequestMethod.POST, //
 	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
-	    public Products addProduct(@RequestBody Products emp) {
+	    public Products addProduct(@RequestBody Products pro) {
 	 
-	        return proDao.insertarProducto(emp);
+	        return proDao.insertarProducto(pro);
 	 
 	    }
 	 
 	    // http://localhost:8090/restApp/producto
 	    // http://localhost:8090/restApp/producto.json
-	    @RequestMapping(value = "/update", //
+	    @RequestMapping(value = "/producto/{id}", //
 	            method = RequestMethod.PUT, //
 	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
@@ -71,8 +71,8 @@ public class ProdRestController {
 	        return proDao.updateProducto(id);
 	    }
 	 
-	    // http://localhost:8090/restApp/producto/{empNo}
-	    @RequestMapping(value = "/pro/{id}", //
+	    // http://localhost:8090/restApp/producto/{id}
+	    @RequestMapping(value = "/producto/{id}", //
 	            method = RequestMethod.DELETE, //
 	            produces = { MediaType.APPLICATION_JSON_VALUE})
 	    @ResponseBody
