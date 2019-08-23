@@ -22,8 +22,8 @@ public class ProdRestController {
 	 
 	    @RequestMapping("/")
 	    @ResponseBody
-	    public String welcome() {
-	        return "Bienvenido.";
+	    public String MainPage() {
+	        return "Productos.";
 	    }
 	    
 	    // http://localhost:8090/restApp/producto

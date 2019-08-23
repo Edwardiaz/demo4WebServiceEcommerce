@@ -87,6 +87,6 @@ JdbcTemplate template;
 		}
 		
 	}
-	/*Terminar metodo Actulizar*/
+	/*Termina metodo Actulizar*/
 
 }
