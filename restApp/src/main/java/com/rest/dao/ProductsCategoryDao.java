@@ -8,65 +8,60 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.rest.config.HibernateUtil;
-import com.rest.entity.Category;
+import com.rest.entity.ProductsCategory;
 
 @Repository
-public class CategoryDao {
+public class ProductsCategoryDao {
 
 	JdbcTemplate template;
 	
-	//metodo insertar
-	public Category saveCategory(Category cat) {
+	public ProductsCategory saveProCat(ProductsCategory proCat) {
 		Transaction transaction = null;
-		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
-			session.save(cat);
+			session.save(proCat);
 			transaction.commit();
-			return cat;
+			return proCat;
 		} catch (Exception e) {
 			if(transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+			System.out.println("ERROR ::::: "+e);
 			return null;
 		}
 	}
-	
-	//metodo consultarAll
-	public List<Category> findAll(){
+	public List<ProductsCategory> findAllProCat(){
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
-			return session.createQuery("from Category", Category.class).list();
+			return session.createQuery("from ProductsCategory", ProductsCategory.class).list();
 		}
 	}
 	
-	//metodo consultar por id
-	public Category findByIdCategory(Long id) {
+	public ProductsCategory findByIdProCat(Long id) {
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
-			Category cat = session.get(Category.class, new Long(id));
-			return cat;
+			ProductsCategory proCat = session.get(ProductsCategory.class, new Long(id));
+			return proCat;
 		}
 	}
 	
-	//metodo eliminar
-	public void deleteCategory(long id) {
+	public void deleteProCat(long id) {
 		Transaction transaction = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Category cat = (Category)session.load(Category.class, new Long(id));
+		ProductsCategory proCat = session.load(ProductsCategory.class, new Long(id));
 		transaction = session.beginTransaction();
-		if(null != cat) {
-			session.delete(cat);
+		if(null != proCat) {
+			session.delete(proCat);
 			transaction.commit();
 		}
 	}
 	
-	//metodo actualizar
-	public Category updateCategory(Category cat) {
+	public ProductsCategory updateCategory(ProductsCategory proCat) {
 		Transaction transaction = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
-			session.update(cat);
+			session.update(proCat);
 			transaction.commit();
-			return cat;
+			return proCat;
 		}
 	}
 }
